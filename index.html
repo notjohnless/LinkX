@@ -3,26 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Link Hub</title>
+    <title>DomainHub - Central Web Portal</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Navigation -->
     <nav class="glass-nav">
-        <a href="index.html" class="logo">LinkHub</a>
-        <div class="nav-links">
-            <a href="social.html">Social</a>
-            <a href="tools.html">Tools</a>
-            <a href="entertainment.html">Entertainment</a>
+        <div class="nav-content">
+            <a href="#home" class="logo" data-text="DomainHub">DomainHub</a>
+            <div class="nav-links">
+                <a href="#home" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="#sites"><i class="fas fa-globe"></i> Our Sites</a>
+                <a href="#stats"><i class="fas fa-chart-line"></i> Stats</a>
+            </div>
         </div>
     </nav>
 
-    <div class="hero">
-        <h1 class="gradient-text">Welcome to LinkHub</h1>
-        <p>Your centralized gateway to the best websites</p>
-    </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="gradient-text" data-text="Welcome to DomainHub">Welcome to DomainHub</h1>
+            <p class="typewriter">Your centralized gateway to our network of websites</p>
+            <div class="scroller">
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Sites -->
+    <section id="sites" class="sites">
+        <h2 class="section-title">Our Network</h2>
+        <div class="grid-container">
+            <div class="site-card" data-site="ecommerce">
+                <div class="card-content">
+                    <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>E-Commerce</h3>
+                    <p>Global shopping destinations</p>
+                    <a href="ecommerce.html" class="card-link">Visit Portals →</a>
+                </div>
+                <div class="card-glare"></div>
+            </div>
+            <!-- Add more site cards following same structure -->
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="stat-card">
+            <i class="fas fa-rocket"></i>
+            <h3 data-count="15">0</h3>
+            <p>Active Portals</p>
+        </div>
+        <!-- Add more stat cards -->
+    </section>
 
     <script src="script.js"></script>
 </body>

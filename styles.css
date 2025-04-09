@@ -1,157 +1,113 @@
 :root {
-    --primary: #2563eb;
-    --secondary: #7c3aed;
+    --primary: #6366f1;
+    --secondary: #8b5cf6;
+    --accent: #ec4899;
     --background: #0f172a;
     --glass: rgba(255, 255, 255, 0.05);
+    --theme-ecommerce: #f59e0b;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
+/* Add all previous styles plus these enhancements */
 
-body {
-    background: var(--background);
-    color: white;
-    min-height: 100vh;
-}
-
-.glass-nav {
-    background: var(--glass);
-    backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.animated-bg {
     position: fixed;
-    width: 100%;
     top: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
     left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
     width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        var(--primary),
+        var(--secondary),
+        var(--accent)
+    );
+    z-index: -1;
+    animation: gradientShift 15s ease infinite;
 }
 
-.hero {
-    margin-top: 100px;
-    text-align: center;
-    padding: 4rem 2rem;
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.gradient-text {
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 100px auto;
-    padding: 0 2rem;
-}
-
-.card {
+.site-card {
+    position: relative;
     background: var(--glass);
-    backdrop-filter: blur(10px);
-    border-radius: 1rem;
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
     padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
-.link-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+.site-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
-.link-card {
-    background: rgba(255, 255, 255, 0.05);
+.card-glare {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent);
+    transform: rotate(45deg);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.domain-card {
+    background: var(--glass);
+    border-radius: 15px;
     padding: 1.5rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    position: relative;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
 }
 
-.link-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-    border-color: var(--primary);
+.domain-card:hover {
+    background: rgba(255,255,255,0.08);
 }
 
-.link-card img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
+.redirect-btn {
+    position: relative;
+    background: var(--primary);
+    padding: 12px 24px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
 }
 
-@keyframes click {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-    100% { transform: scale(1); }
+.loading-dots {
+    display: none;
+    gap: 4px;
 }
 
-.click-animation {
-    animation: click 0.3s ease;
+.redirect-btn.loading .loading-dots {
+    display: flex;
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .link-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
+.timer-circle {
+    position: relative;
+    width: 60px;
+    height: 60px;
 }
+
+.timer-circle circle {
+    fill: none;
+    stroke-width: 4;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.domain-page[data-theme="ecommerce"] {
+    --primary: var(--theme-ecommerce);
+}
+
+/* Add responsive styles and more animations */
