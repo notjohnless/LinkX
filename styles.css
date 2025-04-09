@@ -1,12 +1,13 @@
 :root {
-    --primary: #2563eb;
-    --secondary: #38bdf8;
-    --accent: #60a5fa;
-    --dark: #0f172a;
-    --background: #1e293b;
-    --glass: rgba(255, 255, 255, 0.05);
+    --primary: #3b82f6;
+    --secondary: #60a5fa;
+    --background: #0f172a;
+    --text: #f8fafc;
+    --success: #10b981;
+    --surface: rgba(255, 255, 255, 0.05);
 }
 
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -16,47 +17,38 @@
 
 body {
     background: var(--background);
-    color: white;
+    color: var(--text);
     min-height: 100vh;
     line-height: 1.6;
+    padding-bottom: 60px; /* Footer space */
 }
 
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(45deg, var(--dark), var(--background));
-}
-
+/* Navigation */
 .glass-nav {
-    background: var(--glass);
+    background: var(--surface);
     backdrop-filter: blur(12px);
     padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     width: 100%;
     top: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nav-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    z-index: 1000;
 }
 
 .logo {
     font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--primary);
+    color: var(--text);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.logo i {
+    color: var(--primary);
 }
 
 .nav-links {
@@ -67,103 +59,174 @@ body {
 .nav-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: color 0.3s ease;
 }
 
 .nav-links a.active {
     color: var(--primary);
-    transform: translateY(-2px);
 }
 
-.hero {
-    margin-top: 120px;
+/* Main Content Areas */
+.hero-container {
+    margin-top: 100px;
+    padding: 2rem;
     text-align: center;
-    padding: 4rem 1rem;
 }
 
 .gradient-text {
     background: linear-gradient(45deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
 }
 
-.typewriter {
-    font-size: 1.5rem;
-    color: rgba(255,255,255,0.8);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.ad-spot {
-    background: var(--glass);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 3rem auto;
-    max-width: 800px;
-    position: relative;
-    overflow: hidden;
-}
-
-.ad-spot::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-}
-
-.game-grid {
+/* Site Grid */
+.site-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 100px auto 0;
 }
 
-.game-card {
-    background: var(--glass);
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-decoration: none;
-    color: white;
-    transition: transform 0.3s ease;
-    position: relative;
+.site-card {
+    background: var(--surface);
+    border-radius: 16px;
     overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease;
 }
 
-.game-card:hover {
+.site-card:hover {
     transform: translateY(-5px);
 }
 
-.game-preview {
-    background: rgba(255,255,255,0.1);
-    height: 180px;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+.card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-.glass-footer {
-    background: var(--glass);
-    text-align: center;
+.view-links-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.view-links-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* Link Grid */
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
     padding: 2rem;
-    margin-top: auto;
+    max-width: 1200px;
+    margin: 100px auto 0;
+}
+
+.link-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.verified-badge {
+    background: var(--success);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.site-url {
+    color: var(--text);
+    text-decoration: none;
+    font-family: monospace;
+    margin: 1rem 0;
+    display: block;
+    word-break: break-all;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.copy-btn:hover {
+    color: var(--primary);
+}
+
+/* Footer */
+.universal-footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--surface);
     position: fixed;
     bottom: 0;
     width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 999;
+}
+
+/* About Page */
+.about-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 100px auto 0;
+}
+
+.about-card {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.about-card i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
     .nav-links {
         gap: 1rem;
+        font-size: 0.9rem;
     }
     
     .gradient-text {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+    
+    .site-grid, .link-grid, .about-content {
+        grid-template-columns: 1fr;
+        padding: 1rem;
     }
 }

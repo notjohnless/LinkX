@@ -1,33 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Add particle animation
-    function createParticles() {
-        const particles = document.querySelector('.particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.animationDelay = `${Math.random() * 5}s`;
-            particles.appendChild(particle);
-        }
-    }
-    createParticles();
-
-    // Add hover effects
-    document.querySelectorAll('.game-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--x', `${x}px`);
-            card.style.setProperty('--y', `${y}px`);
+    // Copy functionality
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const url = this.closest('.link-card').querySelector('.site-url').textContent;
+            navigator.clipboard.writeText(url);
+            
+            // Visual feedback
+            const originalIcon = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                this.innerHTML = originalIcon;
+            }, 2000);
         });
     });
 
-    // Add active state to nav links
+    // Set active nav link
+    const currentPage = location.pathname.split("/").pop();
     document.querySelectorAll('.nav-links a').forEach(link => {
-        if (link.href === window.location.href) {
+        if(link.getAttribute('href') === currentPage) {
             link.classList.add('active');
         }
     });
+
+    // Prevent footer overlap
+    const mainContent = document.querySelector('main');
+    const footerHeight = document.querySelector('.universal-footer').offsetHeight;
+    mainContent.style.marginBottom = `${footerHeight + 20}px`;
 });
